@@ -293,7 +293,7 @@
           <div class="col-lg-6">
             <div class="box" data-aos="fade-right">
               <div class="icon"><i class="ion-ios-stopwatch-outline"></i></div>
-              <h4 class="title"><a href="distribution.php">Reward Time</a></h4>
+              <h4 class="title"><a href="/distribution">Reward Time</a></h4>
               <p class="description">Next reward in <span style="font-weight: bold;"><?= getNextDistTime(db_last_dist_time()); ?> minutes</span></p>
             </div>
           </div>
@@ -301,7 +301,7 @@
           <div class="col-lg-6">
             <div class="box" data-aos="fade-left">
               <div class="icon"><i class="ion-ios-bookmarks-outline"></i></div>
-              <h4 class="title"><a href="distribution.php">Distribution</a></h4>
+              <h4 class="title"><a href="/distribution">Distribution</a></h4>
               <p class="description">Currently at distribution <span style="font-weight: bold;">#<?= db_last_dist_nr() ?></span>. Distribution is every <?= DISTRIBUTION_CYCLE ?> minutes.</p>
             </div>
           </div>
@@ -309,7 +309,7 @@
           <div class="col-lg-6">
             <div class="box" data-aos="fade-right">
               <div class="icon"><i class="ion-ios-heart-outline"></i></div>
-              <h4 class="title"><a href="distribution.php">Contributors</a></h4>
+              <h4 class="title"><a href="/distribution">Contributors</a></h4>
               <p class="description">Next reward will be split among <span style="font-weight: bold;"><?= db_count_unpaid_distribution() ?></span> participants</p>
             </div>
           </div>
@@ -317,7 +317,7 @@
           <div class="col-lg-6">
             <div class="box" data-aos="fade-left">
               <div class="icon"><i class="ion-ios-star-outline"></i></div>
-              <h4 class="title"><a href="distribution.php">Reward</a></h4>
+              <h4 class="title"><a href="/distribution">Reward</a></h4>
               <p class="description">Next reward being distributed: <span style="font-weight: bold;"><?= number_format(getCurrentRewardAmount(), 0); ?> PAW</span></p>
             </div>
           </div>

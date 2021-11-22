@@ -17,7 +17,7 @@
     <div class="container">
 
       <div id="logo" class="pull-left">
-        <h1><a href="#intro" class="scrollto">PAW</a></h1>
+        <h1><a href="/#intro" class="scrollto">PAW</a></h1>
         <!-- Uncomment below if you prefer to use an image logo -->
         <!-- <a href="#intro"><img src="img/logo.png" alt="" title="" /></img></a> -->
       </div>
