@@ -1,0 +1,14 @@
+{
+    "name": "paw/website",
+    "description": "Paw Digital Website",
+    "require": {
+        "guzzlehttp/guzzle": "^7.4",
+        "slim/slim": "^4.9",
+        "phpmailer/phpmailer": "^6.5"
+    },
+    "autoload": {
+        "psr-4": {
+            "Paw\\": "src/"
+        }
+    }
+}

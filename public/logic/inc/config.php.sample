@@ -1,0 +1,22 @@
+<?php
+
+// Show errors
+error_reporting(E_ALL);
+
+// NODE
+DEFINE('NODE_ADDRESS', '');
+
+// DISTRIBUTION
+DEFINE('PAW_DISTRIBUTION_WALLET', '');			// Wallet that holds 2 accounts mentioned below
+DEFINE('PAW_DISTRIBUTION_ACCOUNT', '');			// Account that gets distributed
+DEFINE('PAW_DISTRIBUTION_VAULT', ''); 			// Keeps a weeks worth of PAW funds
+DEFINE('DISTRIBUTION_CYCLE', '10'); 			// Distribution cycles in minutes
+DEFINE('DISTRIBUTION_TOTAL_SUPPLY', '272225893536');
+DEFINE('DISTRIBUTION_AMOUNT_PER_CYCLE', DISTRIBUTION_TOTAL_SUPPLY / (4*365*24*6)); // 6 distributions an hour = every 10 minutes (1,294,833 PAW)
+
+
+// MYSQL
+DEFINE('MYSQL_DB_NAME', '');
+DEFINE('MYSQL_DB_USER', '');
+DEFINE('MYSQL_DB_PASSWORD', '');
+DEFINE('MYSQL_DB_HOST', '');
