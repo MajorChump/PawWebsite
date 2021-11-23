@@ -1,15 +1,15 @@
 <?php
-namespace Paw;
+namespace Paw\Node;
 
-use GuzzleHttp\Client;
+use GuzzleHttp\Client as HttpClient;
 
-class NodeClient
+class Client
 {
     protected $client;
 
     public function __construct()
     {
-        $this->setClient(new Client());
+        $this->setClient(new HttpClient());
     }
 
     public function send($post)
@@ -37,7 +37,7 @@ class NodeClient
         return $this->client;
     }
 
-    public function setClient(Client $client)
+    public function setClient(HttpClient $client)
     {
         $this->client = $client;
         return $this;

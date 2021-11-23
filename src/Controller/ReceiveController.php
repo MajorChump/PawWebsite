@@ -2,7 +2,7 @@
 namespace Paw\Controller;
 
 use Paw\AbstractController;
-use Paw\DistributorClient;
+use Paw\Client;
 use Paw\Utils;
 
 class ReceiveController extends AbstractController
@@ -48,7 +48,7 @@ class ReceiveController extends AbstractController
             }
 
             if(!$err) {
-                $client = new DistributorClient();
+                $client = new \Paw\Distributor\Client();
                 $client->sendEmailReward($emailInvite->inviter_address, $_POST['paw_address'], 0, '{"invite_id":"'.$emailInvite->id.'"}');
                 $client->sendEmailReward($_POST['paw_address'], $emailInvite->inviter_address, 1, '{"invite_id":"'.$emailInvite->id.'"}');
                 $this->getDb()->db_set_email_picked_up($emailInvite->id, $_POST['paw_address']);
