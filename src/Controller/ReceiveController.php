@@ -2,6 +2,8 @@
 namespace Paw\Controller;
 
 use Paw\AbstractController;
+use Paw\DistributorClient;
+use Paw\Utils;
 
 class ReceiveController extends AbstractController
 {
@@ -40,14 +42,15 @@ class ReceiveController extends AbstractController
             }
 
             if(!$err) {
-                if(!valid_paw_address($_POST['paw_address'])) {
+                if(!Utils::validPawAddress($_POST['paw_address'])) {
                     $err = 'Invalid PAW address entered';
                 }
             }
 
             if(!$err) {
-                distributor_send_email_reward($emailInvite->inviter_address, $_POST['paw_address'], 0, '{"invite_id":"'.$emailInvite->id.'"}');
-                distributor_send_email_reward($_POST['paw_address'], $emailInvite->inviter_address, 1, '{"invite_id":"'.$emailInvite->id.'"}');
+                $client = new DistributorClient();
+                $client->sendEmailReward($emailInvite->inviter_address, $_POST['paw_address'], 0, '{"invite_id":"'.$emailInvite->id.'"}');
+                $client->sendEmailReward($_POST['paw_address'], $emailInvite->inviter_address, 1, '{"invite_id":"'.$emailInvite->id.'"}');
                 $this->getDb()->db_set_email_picked_up($emailInvite->id, $_POST['paw_address']);
                 $pickedUp = true;
             }

@@ -3,6 +3,7 @@ namespace Paw\Controller;
 
 use Paw\AbstractController;
 use Paw\Email;
+use Paw\Utils;
 
 class EmailController extends AbstractController
 {
@@ -61,7 +62,7 @@ class EmailController extends AbstractController
             }
 
             if(!$err) {
-                if(!valid_paw_address($_POST['paw_address'])) {
+                if(!Utils::validPawAddress($_POST['paw_address'])) {
                     $err = 'Invalid PAW address entered';
                 }
 
@@ -71,10 +72,10 @@ class EmailController extends AbstractController
                 $email = $_POST['email'];
                 $address = $_POST['paw_address'];
                 $pawRewardKey = $_POST['paw_reward_key'];
-                $pickupCode = rand_sha1(24);
+                $pickupCode = Utils::randSha1(24);
                 $this->getDb()->db_insert_email_invite($email, $pawRewardKey, $pickupCode, $address);
 
-                $inviteeRewardKey = rand_sha1(24);
+                $inviteeRewardKey = Utils::randSha1(24);
                 $this->getDb()->db_insert_reward_key($inviteeRewardKey, $dbRewardKey->id);
 
                 $sendResult = (new Email())->sendEmailInvite($_POST["email"], $inviteeRewardKey, $pickupCode);
