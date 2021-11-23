@@ -47,11 +47,11 @@
 							$amount = $REWARD['amount']
 					?>
 					<tr>
-						<td><?php= $REWARD['distribution_nr'] ?></td>
-						<td><?php= $platform ?></td>
-						<td><?php= $REWARD['multiplier'] ?>x</td>
-						<td><?php= $REWARD['payout_address'] ?></td>
-						<td><?php= $amount ?></td>
+						<td><?= $REWARD['distribution_nr'] ?></td>
+						<td><?= $platform ?></td>
+						<td><?= $REWARD['multiplier'] ?>x</td>
+						<td><?= $REWARD['payout_address'] ?></td>
+						<td><?= $amount ?></td>
 					</tr>
 				<?php } ?>
 			<?php endif; ?>
@@ -71,9 +71,9 @@
 			<?php if($DISTRIBUTIONS): ?>
 				<?php foreach($DISTRIBUTIONS as $DIST){ ?>
 					<tr>
-						<td>#<?php= $DIST['id'] ?></td>
-						<td><?php= $DIST['amount'] ?></td>
-						<td><?php= getTimeAgo(date($DIST['time'])) ?></td>
+						<td>#<?= $DIST['id'] ?></td>
+						<td><?= $DIST['amount'] ?></td>
+						<td><?= getTimeAgo(date($DIST['time'])) ?></td>
 					</tr>
 				<?php } ?>
 			<?php endif; ?>

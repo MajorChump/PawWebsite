@@ -4,7 +4,7 @@ namespace Paw;
 use GuzzleHttp\Psr7\Request;
 use GuzzleHttp\Psr7\Response;
 
-class Controller
+abstract class AbstractController
 {
     protected $request;
     protected $response;
@@ -15,41 +15,6 @@ class Controller
     {
         $this->setRequest($request)
             ->setResponse($response);
-    }
-
-    public function index()
-    {
-        $this->addHeader();
-        $this->addTemplate('partials/index.phtml');
-        $this->addFooter();
-        return $this->getResponse();
-    }
-
-    public function distribution()
-    {
-        $this->addHeader();
-        $this->addTemplate('partials/distribution.phtml', [
-            "REWARDS" => $this->getDb()->db_recent_rewards(),
-            "DISTRIBUTIONS" => $this->getDb()->db_recent_distributions()
-        ]);
-        $this->addFooter();
-        return $this->getResponse();
-    }
-
-    public function email()
-    {
-        $this->addHeader();
-        $this->addTemplate('partials/email.phtml');
-        $this->addFooter();
-        return $this->getResponse();
-    }
-
-    public function receive()
-    {
-        $this->addHeader();
-        $this->addTemplate('partials/receive.phtml');
-        $this->addFooter();
-        return $this->getResponse();
     }
 
     public function eula()
