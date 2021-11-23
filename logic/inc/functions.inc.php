@@ -34,6 +34,11 @@
 
 		return floor($time_until_next / 60);
 	}
+	function valid_paw_address($address)
+	{
+		/** The regex pattern for validating the address. */
+		return preg_match('/^paw_[13]{1}[13456789abcdefghijkmnopqrstuwxyz]{59}$/', $address) === 1;
+	}
 	function getTimeAgo($time)
 	{
 		// get seconds ago
@@ -76,6 +81,52 @@
 		return $v_ReturnStr;
 
 	}
+	function rand_sha1($length)
+	{
+		$max = ceil($length / 40);
+		$random = '';
+		for ($i = 0; $i < $max; $i ++) {
+			$random .= sha1(microtime(true).mt_rand(10000,90000));
+		}
+		return substr($random, 0, $length);
+	}
+	
+	
+	// -------------- EMAIL INVITES --------------
+	function distributor_curl ($post) {
+
+		$ch = curl_init();
+
+		curl_setopt($ch, CURLOPT_URL, API_DISTRIBUTOR);
+		curl_setopt($ch, CURLOPT_HEADER, 1); 
+		curl_setopt($ch, CURLOPT_POST, 1);
+		curl_setopt($ch, CURLOPT_VERBOSE, 0);
+        //curl_setopt($ch, CURLOPT_TIMEOUT, 30);
+		curl_setopt($ch, CURLOPT_POSTFIELDS, $post);
+		curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+		curl_setopt($ch, CURLOPT_HEADER, 0);
+		curl_setopt($ch, CURLOPT_HTTPHEADER, array('Content-Type: application/json'));
+		curl_setopt($ch, CURLOPT_HTTPHEADER, array('Content-length: '.strlen($post)));
+
+		$output = curl_exec($ch);
+		if (curl_errno($ch)) {
+			var_dump(curl_error($ch));
+		}
+		curl_close($ch);
+		
+		return $output;
+	}
+	function distributor_send_email_reward($address, $reference, $target, $additional_data = '')
+	{
+		$post = sprintf('{"action": "%s", "target":"%s", "address": "%s", "reference":"%s", "platform":"%s", "additional_data":"%s", "auth": "%s"}', 'insertReward', $target, $address, $reference, 1, str_replace('"', '\"', $additional_data), API_DISTRIBUTOR_KEY);
+		$result = distributor_curl($post);
+		
+		return json_decode($result);
+	}
+	
+	
+	
+	
 	class PawHelperException extends Exception{}
 	class PawHelper
 	{
