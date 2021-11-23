@@ -24,4 +24,10 @@ $app->get('/receive', function (Request $request, Response $response) {
 $app->post('/recieve', function (Request $request, Response $response) {
     return (new \Paw\Controller\ReceiveController($request, $response))->post();
 });
+$app->get('/eula', function (Request $request, Response $response) {
+    return (new \Paw\Controller\SimpleController($request, $response))->eula();
+});
+$app->get('/privacy', function (Request $request, Response $response) {
+    return (new \Paw\Controller\SimpleController($request, $response))->privacy();
+});
 $app->run();

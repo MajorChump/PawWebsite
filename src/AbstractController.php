@@ -17,18 +17,6 @@ abstract class AbstractController
             ->setResponse($response);
     }
 
-    public function eula()
-    {
-        $this->addTemplate('eula.phtml');
-        return $this->getResponse();
-    }
-
-    public function privacy()
-    {
-        $this->addTemplate('privacy.phtml');
-        return $this->getResponse();
-    }
-
     protected function addTemplate($name, $variables = [])
     {
         $viewName = __DIR__ . static::VIEW_FOLDER . $name;
